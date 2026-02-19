@@ -6,11 +6,13 @@ app.listen(8080,()=>
     });
 app.get("/",(req,res)=>
     {
-        console.log(req.url)
         res.send("resonse from server for /")
     })    
 app.get("/home",(req,res)=>
     {
-        console.log(req.url)
         res.send("resonse from /home")
     })    
+app.get("/home/page1",(req,res)=>
+    {
+        res.send("resonse from /home/page1")
+    })        
