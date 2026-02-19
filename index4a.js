@@ -28,3 +28,7 @@ app.get("/x/:num1/y/:num2/z/:num3", (req, res) => {
 app.get("/:a/:b/:c/:d", (req, res) => {
     res.send("hello students")
 })
+
+//a/b/c/d fixed path
+// /:a/:b/:c/:d -parameter
+
