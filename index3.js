@@ -12,5 +12,5 @@ app.get("/",(req,res)=>
 app.get("/home",(req,res)=>
     {
         console.log(req.url)
-        res.send("resonse from home")
+        res.send("resonse from /home")
     })    
