@@ -19,3 +19,12 @@ app.get("/x/:num1/y/:num2/z/:num3", (req, res) => {
     const c = Number(req.params.num3)
     res.send(a + b + c)
 })
+
+//localhost://8080/x/y
+
+//localhost://8080/a/b/c/d or 1/2/3/4 or p/q/r/s
+//it should return hello students
+
+app.get("/:a/:b/:c/:d", (req, res) => {
+    res.send("hello students")
+})
