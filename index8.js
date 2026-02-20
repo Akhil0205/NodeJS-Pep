@@ -7,7 +7,7 @@
 //http://localhost:8080/    
 
 //1 print the array
-import express from 'express'
+import express, { response } from 'express'
 const app=express()
 app.listen(8080,()=>console.log("Server started"))
 const users=
@@ -23,14 +23,12 @@ app.get("/",(req,res)=>
 //2 print at 8080/1 and print id:1    
 
 app.get("/:id", (req, res) => {   
-    const id = Number(req.params.id)
-    const user = users.find(user => user.id === id)
+    const user = users.find((user) => user.id === Number(req.params.id))
+    if(user)
+        {
+            response.json(user)
+        }
 
-    if (user) {
-        res.json(user)
-    } else {
-        res.status(404).json({ message: "User not found" })
-    }
 })
 
 //add this to existing data
@@ -67,26 +65,26 @@ app.post("/",(req,res)=>
         //in realtime we fetch from mongodb so data gets stored
     })
 
-// app.delete("/:id",(req,res)=>
-//     {
-//         res.send("succesfully deleted")
-//         //delete and return rest data
-//         //use user.filter
-// //pending
-//     })    
-app.delete("/users/:id", (req, res) => {
-    const userId = Number(req.params.id);
+app.delete("/:id",(req,res)=>
+    {
+        users=users.filter((user)=>user.id !== Number(req.params.id))
+        res.json(users)
+        //delete and return rest data
+        //use user.filter
+    })    
+// app.delete("/users/:id", (req, res) => {
+//     const userId = Number(req.params.id);
 
-    const index = users.findIndex(u => u.id === userId);
+//     const index = users.findIndex(u => u.id === userId);
 
-    if (index === -1) {
-        return res.status(404).json({ message: "User not found" });
-    }
+//     if (index === -1) {
+//         return res.status(404).json({ message: "User not found" });
+//     }
 
-    const deletedUser = users.splice(index, 1);
+//     const deletedUser = users.splice(index, 1);
 
-    res.json({
-        message: "User deleted successfully",
-        user: deletedUser[0]
-    });
-});    
+//     res.json({
+//         message: "User deleted successfully",
+//         user: deletedUser[0]
+//     });
+// });    
