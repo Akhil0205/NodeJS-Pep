@@ -1,22 +1,27 @@
 //MIDDLEWARE
-import express from 'express'
-const app=express()
-app.listen(8080,()=>
-    {
-        console.log("Server started")
-    })
-const logger = ()=>
-    {
+import express from 'express';
+const app = express();
+app.listen(8080);
 
-    } 
-app.use(logger)    
-app.get("/",(req,res)=>
-    {
-        //res.send("Hello World")
+const logger = (req,res,next)=> {
+req.message = "This is  longer function"
+//console.log(req.url)
+next();
+};
 
-        // res.json({name:"John"})
-        //sent as js object converts to json format
-        
-        res.send({name:"John"})
-         //still converts to json only
-    })  
+//app.use(logger);
+
+app.get("/",logger, (req,res)=>{
+   // res.end()
+  // res.send("Hello World")
+   // res.json({name:"Johm",age: 21})
+   console.log(req.message);
+   res.json(req.url);
+});
+
+app.get("/home", (req,res)=>{
+ console.log(req.message);
+   res.json(req.url);
+   res.send("home")
+});  
+ 
