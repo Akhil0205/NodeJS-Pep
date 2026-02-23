@@ -1,12 +1,9 @@
-import express from 'express'
-const userRouter=express.Router()
-userRouter.get("/",(req,res)=>
-    {
-        res.send("Get req of users")
-    })
-userRouter.post("/",(req,res)=>
-    {
-        res.send("Post req of users")
-    })  
+import express from "express"
+import { getUsers, createUser } from "../controllers/userController.js"
 
-export default userRouter 
+const userRouter = express.Router()
+
+userRouter.get("/", getUsers)
+userRouter.post("/", createUser)
+
+export default userRouter
