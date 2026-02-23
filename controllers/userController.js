@@ -1,7 +1,15 @@
+import users from '../models/userModel.js'
 export const getUsers = (req,res)=>{
-    res.send("Get req of users")
+    res.json(users)
+    //res.send("Get req of users")
 }
 
 export const createUser = (req,res)=>{
-    res.send("Post req of users")
+    const newUser=req.body
+    users.push(newUser)
+    res.json(
+        {
+            message:"User added",
+            users
+        })
 }

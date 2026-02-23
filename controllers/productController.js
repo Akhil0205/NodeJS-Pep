@@ -1,7 +1,15 @@
+import products from '../models/productModel.js'
 export const getProducts = (req,res)=>{
-    res.send("Get req of products")
+    res.json(products)
+    //res.send("Get req of users")
 }
 
 export const createProduct = (req,res)=>{
-    res.send("Post req of products")
+    const newProduct=req.body
+    products.push(newProduct)
+    res.json(
+        {
+            message:"Product added",
+            products
+        })
 }
